@@ -1,11 +1,25 @@
 <?php
 
 require 'vendor/autoload.php';
+include 'bootstrap.php';
+
+use Chatter\Models\Message;
 
 $app = new \Slim\App();
 // Define app routes
 $app->get('/message', function ($request, $response, $args) {
-    return $response->write("This is our messages ");
+    $_message = new Message();
+
+    $messages = $_message->all();
+
+        $payload = [];
+    foreach($messages as $_msg) {
+        $payload[$_msg->id] = ['body' => $_msg->body,
+                             'user_id' => $_msg->user_id,
+                              'created_at' => $_msg->created_at];
+    }
+
+     return $response->withStatus(200)->withJson($payload);
 });
 
 // Run app
