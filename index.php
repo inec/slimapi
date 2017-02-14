@@ -4,8 +4,10 @@ require 'vendor/autoload.php';
 include 'bootstrap.php';
 
 use Chatter\Models\Message;
+use Chatter\Middleware\Logging as ChatterLogging;
 
 $app = new \Slim\App();
+$app->add(new ChatterLogging());
 // Define app routes
 $app->get('/message', function ($request, $response, $args) {
     $_message = new Message();
