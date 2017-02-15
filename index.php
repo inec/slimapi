@@ -34,14 +34,20 @@ $app->post('/messages', function ($request, $response, $args) {
     $files = $request->getUploadedFiles();
     $newfile = $files['file'];
 
+    if ($newfile->getError() === UPLOAD_ERR_OK) {
+        $uploadFileName = $newfile->getClientFilename();
+        $newfile->moveTo("assets/images/" . $uploadFileName);
+        $imagepath = "assets/images/" . $uploadFileName;
+    }
+
     $message = new Message();
     $message->body = $_message;
-    $message->user_id = -1;
+    $message->user_id = $request->getAttribute('user_id');
+    $message->image_url = $imagepath;
     $message->save();
 
     if ($message->id) {
-        $payload = ['message_id' => $message->id, 
-                        'message_uri' => '/messages/' . $message->id];
+        $payload = ['message_id' => $message->id, 'message_uri' => '/messages/' . $message->id];
         return $response->withStatus(201)->withJson($payload);
     } else {
         return $response->withStatus(400);
