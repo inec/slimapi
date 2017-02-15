@@ -30,6 +30,10 @@ $app->get('/message', function ($request, $response, $args) {
 $app->post('/messages', function ($request, $response, $args) {
     $_message = $request->getParsedBodyParam('message', '');
 
+    $imagepath = '';
+    $files = $request->getUploadedFiles();
+    $newfile = $files['file'];
+
     $message = new Message();
     $message->body = $_message;
     $message->user_id = -1;
