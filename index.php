@@ -10,22 +10,19 @@ use Chatter\Middleware\Authentication as ChatterAuth;
 $app = new \Slim\App();
 $app->add(new ChatterAuth());
 $app->add(new ChatterLogging());
-// Define app routes
-$app->get('/message', function ($request, $response, $args) {
+
+$app->get('/messages', function ($request, $response, $args) {
     $_message = new Message();
 
     $messages = $_message->all();
 
-        $payload = [];
+    $payload = [];
     foreach($messages as $_msg) {
-        $payload[$_msg->id] = ['body' => $_msg->body,
-                             'user_id' => $_msg->user_id,
-                              'created_at' => $_msg->created_at];
+        $payload[$_msg->id] = ['body' => $_msg->body, 'user_id' => $_msg->user_id, 'created_at' => $_msg->created_at];
     }
 
-     return $response->withStatus(200)->withJson($payload);
+    return $response->withStatus(200)->withJson($payload);
 });
-
 
 $app->post('/messages', function ($request, $response, $args) {
     $_message = $request->getParsedBodyParam('message', '');
@@ -33,7 +30,7 @@ $app->post('/messages', function ($request, $response, $args) {
     $imagepath = '';
     $files = $request->getUploadedFiles();
     $newfile = $files['file'];
-
+            print_r($newfile); 
     if ($newfile->getError() === UPLOAD_ERR_OK) {
         $uploadFileName = $newfile->getClientFilename();
         $newfile->moveTo("assets/images/" . $uploadFileName);
@@ -64,5 +61,6 @@ $app->delete('/messages/{message_id}', function ($request, $response, $args) {
         return $response->withStatus(204)->withJson($payload);
     }
 });
+
 // Run app
 $app->run();
