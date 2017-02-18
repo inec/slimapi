@@ -9,10 +9,11 @@ use Chatter\Middleware\Authentication as ChatterAuth;
 use \Symfony\Component\HttpFoundation\Request;
 use \Symfony\Component\HttpFoundation\Response;
 
+
 $app = new Silex\Application();
 $app->before(function($request, $app) {
     ChatterLogging::log($request, $app);
-    ChatterAuth::authenticate($request, $app);
+   ChatterAuth::authenticate($request, $app);
 });
 
 $app->get('/messages', function() {
@@ -37,7 +38,7 @@ $app->post('/messages', function(Request $request) use ($app) {
     $message->save();
 
     if ($message->id) {
-        $payload = ['message_id' => $message->id, 'message_uri' => '/messages/' . $message->id];
+$payload = ['message_id' => $message->id, 'message_uri' => '/messages/' . $message->id];
         $code = 201;
     } else {
         $code = 400;
@@ -47,4 +48,16 @@ $app->post('/messages', function(Request $request) use ($app) {
     return $app->json($payload, $code);
 });
 
+
+$app->delete('/messages/{message_id}', function($message_id) use ($app) {
+    $message = Message::find($message_id);
+
+
+    if ($message->exists) {
+            $message->delete();
+        return new Response('', 400);
+    } else {
+        return new Response('', 204);
+    }
+});
 $app->run();
