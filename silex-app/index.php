@@ -32,6 +32,21 @@ $app->get('/messages', function() {
 $app->post('/messages', function(Request $request) use ($app) {
     $_message = $request->get('message');
 
+$filter = function (Request $request, Application $app) {
+    $filefilter = new FileFilter();
+    $filepath = $filefilter->filter($_FILES, $app);
+    $request->headers->set('filepath', $filepath);
+};
+$removeExif = function (Request $request, Application $app) {
+    $filepath = $request->headers->get('filepath');
+    $filepath = ImageRemoveExif::removeExif($filepath);
+    $request->headers->set('filepath', $filepath);
+};
+$move = function(Request $request, Application $app) {
+    $filepath = $request->headers->get('filepath');
+    $filepath = FileMove::move($filepath, $app);
+    $request->headers->set('filepath', $filepath);
+};
 
  $newfile = $_FILES['file'];
     $uploadFileName = $newfile['name'];
