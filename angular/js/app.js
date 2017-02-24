@@ -1,9 +1,8 @@
 
-var app = angular.module('groceryListApp', []);
+var app = angular.module('groceryListApp', []);//dependcy
 
-app.controller("HomeController", ["$scope", function($scope) {
-    $scope.appTitle = "Grocery List";
-}]);
+app.controller("HomeController", ["$scope", function($scope) {    $scope.appTitle = "Grocery List";
+} ] );
 
 app.controller("GroceryListItemsController", ["$scope", function($scope){
     $scope.groceryItems = [
@@ -18,3 +17,12 @@ app.controller("GroceryListItemsController", ["$scope", function($scope){
     ]
 
 }])
+
+//snake case
+app.directive("welcomeMessage",function(){
+
+    return {
+        restrict: "E",
+        template:"<div>Howdy</div>"
+    }
+});
