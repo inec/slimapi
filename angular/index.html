@@ -32,7 +32,11 @@
 
 <div class="container" ng-controller="GroceryListItemsController">
     <div class="col-xs-12">
+        tt {{a.b}} t    <button type="button" class="btn  btn-success pull-right" ng-click="timeTwo()">
+                   double
+                </button>
         <ul class="list-group">
+           
             <li class="list-group-item text-center clearfix" ng-repeat="item in groceryItems">
                 <button type="button" class="btn btn-sm btn-success pull-left">
                     <span class="glyphicon glyphicon-unchecked"></span>
