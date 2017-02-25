@@ -20,9 +20,8 @@ app.controller("GroceryListItemsController", ["$scope", function($scope){
 
 //snake case
 app.directive("welcomeMessage",function(){
-
     return {
         restrict: "E",
         template:"<div>Howdy</div>"
-    }
+    };
 });
