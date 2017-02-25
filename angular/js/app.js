@@ -20,7 +20,7 @@ app.controller("GroceryListItemsController", ["$scope","Calc", function($scope,C
 
 
    $scope.a={};
-   $scope.a.b=2;
+   $scope.a.b=3;
 
     $scope.timeTwo=function(){
       $scope.a.b=Calc.timeTwo(   $scope.a.b);
@@ -41,7 +41,7 @@ app.factory("Calc",function(){
     
     var calc={};
     calc.timeTwo=function(a){
-        return a*2;
+        return a+=a;
     }
 
     return calc;
