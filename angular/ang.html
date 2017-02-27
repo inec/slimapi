@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <title>Sunova Table Filter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<body ng-app="TableFilterApp" ng-controller="TableFilterController">
+    <p>
+    	<span style="font-weight: bold;">Search</span>
+        <input type="text" ng-model="searchText">
+    </p>
+    <table border="1" width="80%">
+        <thead>
+            <tr>
+                <th ng-repeat="(header, value) in sunova[0]" ng-click="changeSorting(header)">
+                	<button>{{header}}</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in sunova | filter:searchText | orderBy:sort.column:sort.descending">
+                <td ng-repeat="cell in row">{{cell}}</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script>
+const sunova_url = "https://mobiledev.sunovacu.ca/api/Values/GetCars"
+const app = angular.module('TableFilterApp', [])
+app.controller('TableFilterController', ($scope, $http) => {
+    $http.get(sunova_url).then((successData) => {
+        const results = $.makeArray(successData)[0].data
+        $scope.sunova = results;
+        $scope.sort = {
+            column: '',
+            descending: false
+        }
+        $scope.changeSorting = (column) => {
+        	// console.log("sorted")
+        	const sort = $scope.sort;
+ 
+            if (sort.column == column) {
+                sort.descending = !sort.descending;
+            } else {
+                sort.column = column;
+                sort.descending = false;
+            }
+        }
+    })
+});
+</script>
+
+</html>
