@@ -17,7 +17,7 @@ app.controller("GroceryListItemsController", ["$scope","Calc","$log", function($
         {itemName: 'eggs',cost:110.1, date: '2014-10-04'},
         {itemName: 'tortillas',cost:120.1, date: '2014-10-04'}
     ];
-$log.debug("GroceryListItemsController $log"); 
+$log.debug("GroceryListItemsController $log"); //good
     
 
    $scope.a={};
