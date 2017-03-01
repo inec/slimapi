@@ -1,10 +1,21 @@
 
-var app = angular.module('groceryListApp', []);//dependcy
+var app = angular.module('groceryListApp', ['ngCookies']);//dependcy
 
 app.controller("HomeController", ["$scope","$log", function($scope,$log) {    $scope.appTitle = "Grocery List";
 $log.debug("HomeController $log"); //not used
     
 } ] );
+
+
+app.controller('ExampleController', ['$scope','$cookies','$log', function($scope,$cookies,$log) {
+  // Retrieving a cookie
+  var favoriteCookie = $cookies.get('myFavorite');
+  // Setting a cookie
+
+  $cookies.put('myFavorite', 'oatmeal');
+  $scope.msg=favoriteCookie; //$scope
+  $log.debug(favoriteCookie);
+}]);
 
 app.controller("GroceryListItemsController", ["$scope","Calc","$log", function($scope,Calc,$log){
     $scope.groceryItems = [
