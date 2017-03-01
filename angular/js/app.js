@@ -1,23 +1,24 @@
 
 var app = angular.module('groceryListApp', []);//dependcy
 
-app.controller("HomeController", ["$scope", function($scope) {    $scope.appTitle = "Grocery List";
-
+app.controller("HomeController", ["$scope","$log", function($scope,$log) {    $scope.appTitle = "Grocery List";
+$log.debug("HomeController $log");
     
 } ] );
 
-app.controller("GroceryListItemsController", ["$scope","Calc", function($scope,Calc){
+app.controller("GroceryListItemsController", ["$scope","Calc","$log", function($scope,Calc,$log){
     $scope.groceryItems = [
-        {itemName: 'milk', date: '2014-10-01'},
-        {itemName: 'cookies', date: '2014-10-01'},
-        {itemName: 'ice cream', date: '2014-10-02'},
-        {itemName: 'potatoes', date: '2014-10-02'},
-        {itemName: 'cereal', date: '2014-10-03'},
-        {itemName: 'bread', date: '2014-10-03'},
-        {itemName: 'eggs', date: '2014-10-04'},
-        {itemName: 'tortillas', date: '2014-10-04'}
+        {itemName: 'milk',cost:10.1, date: '2014-10-01'},
+        {itemName: 'cookies',cost:12.1, date: '2014-10-01'},
+        {itemName: 'ice cream',cost:10.01, date: '2014-10-02'},
+        {itemName: 'potatoes',cost:190.1, date: '2014-10-02'},
+        {itemName: 'cereal',cost:130.1, date: '2014-10-03'},
+        {itemName: 'bread',cost:120.1, date: '2014-10-03'},
+        {itemName: 'eggs',cost:110.1, date: '2014-10-04'},
+        {itemName: 'tortillas',cost:120.1, date: '2014-10-04'}
     ];
-
+$log.debug("GroceryListItemsController $log"); 
+    
 
    $scope.a={};
    $scope.a.b=3;
