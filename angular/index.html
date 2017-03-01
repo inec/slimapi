@@ -29,7 +29,9 @@
         </div>
     </div>
 </nav>
-
+<div class="container" ng-controller="ExampleController">
+     <span class="glyphicon glyphicon-unchecked">test--{{msg | uppercase }}</span>
+    </div>
 <div class="container" ng-controller="GroceryListItemsController">
     <div class="col-xs-12">
         TGIT {{a.b}} TNOT    <button type="button" class="btn  btn-success pull-right" ng-click="timeTwo()">
