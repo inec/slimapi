@@ -2,7 +2,7 @@
 var app = angular.module('groceryListApp', []);//dependcy
 
 app.controller("HomeController", ["$scope","$log", function($scope,$log) {    $scope.appTitle = "Grocery List";
-$log.debug("HomeController $log");
+$log.debug("HomeController $log"); //not used
     
 } ] );
 
