@@ -1,22 +1,30 @@
 <template>
   <div id="app">
-   <!-- <img src="./assets/logo.png">-->
-     <todo-list v-bind:todos="todos"></todo-list>
+    <h1 class="ui dividing centered header">Vue.js Todo App</h1>
+    <div class='ui three column centered grid'>
+      <div class='column'>
+        <todo-list v-bind:todos="todos"></todo-list>
+        <create-todo v-on:create-todo="createTodo"></create-todo>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import TodoList from './components/TodoList'  
+import sweetalert from 'sweetalert';
+import TodoList from './components/TodoList';
+import CreateTodo from './components/CreateTodo';
 
 export default {
+  name: 'app',
   components: {
-    // Add a reference to the TodoList component in the components property
-  props: ['todos'],
+    TodoList,
+    CreateTodo,
   },
-data() {
+  data() {
     return {
       todos: [{
-        title: 'Todo AS',
+        title: 'Todo A',
         project: 'Project A',
         done: false,
       }, {
@@ -34,17 +42,11 @@ data() {
       }],
     };
   },
+  methods: {
+    createTodo(newTodo) {
+      this.todos.push(newTodo);
+      sweetalert('Success!', 'To-Do created!', 'success');
+    },
+  },
 };
-
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
