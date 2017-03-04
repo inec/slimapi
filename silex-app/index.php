@@ -9,7 +9,6 @@ use Chatter\Middleware\Authentication as ChatterAuth;
 use \Symfony\Component\HttpFoundation\Request;
 use \Symfony\Component\HttpFoundation\Response;
 
-
 $app = new Silex\Application();
 $app->before(function($request, $app) {
     ChatterLogging::log($request, $app);
