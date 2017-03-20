@@ -15,10 +15,13 @@
 <p class="error vlidationerror" 
 ng-show=" myform.email.$touched && myform.email.$invalid ">
 Plese use a vlide email</p>
+
       <input type="password" name="password" placeholder="Password"
       ng-model="user.password" ng-required="true">
 
-
+<p class="error vlidationerror" 
+ng-show=" myform.password.$touched && myform.password.$invalid ">
+Plese use a complex passwod</p>
     </fieldset>
 
     <button type="submit" class="btn"
