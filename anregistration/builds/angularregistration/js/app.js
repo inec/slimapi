@@ -7,7 +7,7 @@ myApp.run(['$rootScope', '$location', function($rootScope, $location) {
       $rootScope.message = 'Sorry, you must log in to access that page';
       $location.path('/login');
     }//Auth Required
-  }); //$routeChangeError
+  }); 
 }]); 
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
