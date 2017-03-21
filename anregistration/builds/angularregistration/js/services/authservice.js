@@ -24,6 +24,14 @@ myApp.factory('AuthService',
         user.email,
         user.password
       ).then(function(regUser) {
+        var regRef = ref.child('user')
+        .child(regUser.uid).set({
+          date:firebase.database.serverValue.TIMESTAMP,
+          regUser:regUser.uid,
+          firstname:user.firname,
+          lastname:user.lastname,
+          email:user.email
+        });//user
         $rootScope.message  = "hi"+user.firstname+"  , thanks";
       }).catch(function(error) {
         $rootScope.message = error.message;
