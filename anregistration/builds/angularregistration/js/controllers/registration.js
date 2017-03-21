@@ -1,17 +1,21 @@
 myApp.controller('RegistrationController', 
-  ['$scope', 'Authentication', 
-  function($scope, Authentication) {
+  ['$scope', '$firebase','$firebaseAuth', 
+  function($scope, $firebase,$firebaseAuth) {
+
+
+
+
 
   $scope.login = function() {
-    Authentication.login($scope.user);
+
   };
 
-  $scope.logout = function() {
-    Authentication.logout();
-  };
+
 
   $scope.register = function() {
-    Authentication.register($scope.user);
+     
+
+   // Authentication.register($scope.user);
   }; //register
 
 }]); //Controller
