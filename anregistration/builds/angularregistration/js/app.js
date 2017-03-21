@@ -11,14 +11,15 @@ myApp.run(['$rootScope', '$location', function($rootScope, $location) {
 }]); 
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-    when('/login', {
-      templateUrl: 'views/login.html',
-      controller: 'RegistrationController'
-    }).
     when('/register', {
       templateUrl: 'views/register.html',
       controller: 'RegistrationController'
     }).
+    when('/login', {
+      templateUrl: 'views/login.html',
+      controller: 'RegistrationController'
+    }).
+
     when('/success', {
       templateUrl: 'views/success.html',
       controller: 'SuccessController',
@@ -29,6 +30,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
       }//resolve
     }).
     otherwise({
-      redirectTo: '/login'
+      redirectTo: '/register'
     });
 }]);
