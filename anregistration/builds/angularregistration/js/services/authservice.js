@@ -19,19 +19,20 @@ myApp.factory('AuthService',
 
 
     register: function(user) {
-      console.log(user);
+
       auth.$createUserWithEmailAndPassword(
         user.email,
         user.password
       ).then(function(regUser) {
-        var regRef = ref.child('user')
+        var regRef = ref.child('users')
         .child(regUser.uid).set({
-          date:firebase.database.serverValue.TIMESTAMP,
-          regUser:regUser.uid,
-          firstname:user.firname,
-          lastname:user.lastname,
-          email:user.email
+          date:firebase.database.ServerValue.TIMESTAMP,
+          regUser: 'regUser.uid',
+          firstname: user.firstname,
+          lastname: user.lastname,
+          email: user.email
         });//user
+
         $rootScope.message  = "hi"+user.firstname+"  , thanks";
       }).catch(function(error) {
         $rootScope.message = error.message;
