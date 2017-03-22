@@ -1,6 +1,6 @@
 myApp.factory('AuthService',
-  ['$rootScope',  '$firebaseAuth',
-  function($rootScope, $firebaseAuth) {
+  ['$rootScope','$location',  '$firebaseAuth',
+  function($rootScope, $location,$firebaseAuth) {
 //name it self
   var ref = firebase.database().ref();
   var auth = $firebaseAuth();
@@ -10,7 +10,18 @@ myApp.factory('AuthService',
 //
   myObject = {
     login: function(user) {
-    $rootScope.message="wel"+$rootScope.user.email;      //signInWithEmailAndPassword
+       auth.$createUserWithEmailAndPassword(
+        user.email,
+        user.password      //signInWithEmailAndPassword
+      ).then( function(user) {
+        $location.path('/success');
+      }).catch(function(error){
+        $rootScope.message =error.message;
+      }
+
+      )
+
+      
     }, //login
 
     logout: function() {
