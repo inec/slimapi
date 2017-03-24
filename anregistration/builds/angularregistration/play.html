@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS Plunker</title>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="style.css" />
+    <script data-require="angular.js@1.0.x" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js" data-semver="1.0.8"></script>
+    <script src="papp.js"></script>
+  </head>
+
+  <body ng-controller="AppCtrl">
+    <ul class="">
+        <li ng-repeat="project in projects">
+            <a ng-click="setProject(project.id)" href="">{{project.url}}</a>
+        </li>
+    </ul>
+    <iframe  ng-src="{{currentProject.url}}">
+        Something wrong...
+    </iframe>
+  </body>
+
+</html>
