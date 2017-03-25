@@ -6,26 +6,27 @@ myApp.factory('AuthService',
   var auth = $firebaseAuth();
   var myObject;
 
-auth.$onAuthStateChanged(function(authUser){
- if(authUser){
-   var userRef=ref.child('users').child(authUser.uid);
-   var userObj=$firebaseObject(userRef);
-   $rootScope.currentUser  = userObj;
- }else{
-   $rootScope.currentUser='';
- }
-});
+auth.$onAuthStateChanged(function(authUser) {
+    if(authUser) {
+      var userRef = ref.child('users').child(authUser.uid);
+      var userObj = $firebaseObject(userRef);
+      $rootScope.currentUser = userObj;
+    } else {
+      $rootScope.currentUser = '';
+    }
+  });
 
 //
   myObject = {
     login: function(user) {
       console.log('as.js L21');
-       auth.$createUserWithEmailAndPassword(
+        auth.$signInWithEmailAndPassword(
         user.email,
-        user.password     
-      ).then( function(user) {
+        user.password
+      ).then(function(user) {
+        console.log(user.email);
         $location.path('/success');
-      }).catch(function(error){
+      }).catch(function(error) {
          console.log('as.js L30'+error.message);
         $rootScope.message =error.message;
       }      ); //signInWithEmailAndPassword
