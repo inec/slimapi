@@ -19,18 +19,23 @@ auth.$onAuthStateChanged(function(authUser){
 //
   myObject = {
     login: function(user) {
+      console.log('as.js L21');
        auth.$createUserWithEmailAndPassword(
         user.email,
         user.password     
       ).then( function(user) {
         $location.path('/success');
       }).catch(function(error){
+         console.log('as.js L30'+error.message);
         $rootScope.message =error.message;
       }      ); //signInWithEmailAndPassword
       
     }, //login
 
     logout: function() {
+
+           return auth.$signOut();
+
     }, //logout
 
 

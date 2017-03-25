@@ -22,14 +22,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
 
     when('/success', {
       templateUrl: 'views/success.html',
-      controller: 'SuccessController',
-      resolve: {
+      controller: 'SuccessController'
+      /*resolve: {
         currentAuth: function(Authentication) {
           return Authentication.requireAuth();
         } //currentAuth
-      }//resolve
+      }*///resolve
     }).
     otherwise({
-      redirectTo: '/login'
+      redirectTo: '/register'
     });
 }]);
