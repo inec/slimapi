@@ -4,7 +4,8 @@ var myApp = angular.module('myApp',
 myApp.run(['$rootScope', '$location', function($rootScope, $location) {
   $rootScope.$on('$routeChangeError', function(event, next, previous, error) {
     if (error == 'AUTH_REQUIRED') {
-      $rootScope.message = 'Sorry, you must log in to access that page';
+      console.log("sorry");
+      $rootScope.message = 'Sorry, you must log in to access that page1';
       $location.path('/login');
     }//Auth Required
   }); 
@@ -23,13 +24,13 @@ myApp.config(['$routeProvider', function($routeProvider) {
     when('/success', {
       templateUrl: 'views/success.html',
       controller: 'SuccessController'
-      /*resolve: {
+      ,resolve: {
         currentAuth: function(Authentication) {
           return Authentication.requireAuth();
         } //currentAuth
-      }*///resolve
+      }//resolve
     }).
     otherwise({
-      redirectTo: '/register'
+      redirectTo: '/login'
     });
 }]);
