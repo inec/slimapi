@@ -1,18 +1,20 @@
-myApp.controller('MeetingsController', 
-['$scope', '$firebaseAuth','$firebaseArray','AuthService',
- function($scope,$firebaseAuth,$firebaseArray, $rootScope,AuthService) {
-    
+myApp.controller('MeetingsController',
+  ['$scope',    '$rootScope','$firebaseAuth', '$firebaseArray',
+  function($scope,   $rootScope, $firebaseAuth, $firebaseArray) {
+
     var ref = firebase.database().ref();
     var auth = $firebaseAuth();
-     
-    
 
     auth.$onAuthStateChanged(function(authUser) {
       if(authUser) {
         var meetingsRef = ref.child('users').child(authUser.uid).child('meetings');
         var meetingsInfo = $firebaseArray(meetingsRef);
 
-         $scope.meetings= meetingsInfo;
+        $scope.meetings = meetingsInfo;
+       
+        meetingsInfo.$loaded().then( function(data){
+          $rootScope.howManyMeetings=meetingsInfo.length;
+        })
 
         $scope.addMeeting = function() {
           meetingsInfo.$add({
@@ -21,20 +23,13 @@ myApp.controller('MeetingsController',
           }).then(function() {
             $scope.meetingname='';
           }); //promise
-        } //addMeeting   
+        } //addMeeting
 
-
-         $scope.deleteMeeting = function(key){
-           console.log(key);
-            meetingsInfo.$remove(key);
-         }     
-
-
-      }else{
-      console.log("not auth");
-      }//authUser
-    
-    });//onAUth 
-
-
-}]);
+        $scope.deleteMeeting = function(key) {
+          console.log(key);
+          meetingsInfo.$remove(key);
+        } //deleteMeeting
+              
+      } //authUser
+    }); //onAuthStateChanged
+}]); //myApp.controller
