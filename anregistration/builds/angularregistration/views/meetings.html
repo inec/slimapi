@@ -1,7 +1,8 @@
 <div class="card meetings cf">
   <div class="textintro">
     <h1>Add Meeting</h1>
-    <p>Type a meeting name and hit +</p>
+    <p>Type a meeting name and hit + icon</p>
+
     <form class="formgroup addmeeting cf"
       name="myform"
       ng-submit="addMeeting()"
@@ -18,6 +19,7 @@
 
 <div class="card meetings cf">
   <h2>Your Meetings</h2>
+  
   <div class="meeting" ng-repeat="(key, meeting) in meetings">
 
     <button class="btn btn-delete tooltip"
@@ -33,6 +35,6 @@
         <span>View list of checked-in users</span>
         </a>
 
-    <span class="text">{{meeting.name}}</span>
+    <span class="text">{{meeting.name}}-{{meeting.key}}</span>
   </div><!-- meetings list -->
 </div><!-- meetings cf -->

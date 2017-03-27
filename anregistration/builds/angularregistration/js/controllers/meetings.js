@@ -21,7 +21,15 @@ myApp.controller('MeetingsController',
           }).then(function() {
             $scope.meetingname='';
           }); //promise
-        } //addMeeting     
+        } //addMeeting   
+
+
+         $scope.deleteMeeting = function(key){
+           console.log(key);
+            meetingsInfo.$remove(key);
+         }     
+
+
       }else{
       console.log("not auth");
       }//authUser
