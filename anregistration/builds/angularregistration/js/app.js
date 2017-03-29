@@ -16,7 +16,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'views/register.html',
       controller: 'RegistrationController'
     }).
-    when('/checkins/:uId/:mId', {
+    when('/checkins/:uId', {
       templateUrl: 'views/checkins.html',
       controller: 'CheckinsController'
     }).
@@ -35,6 +35,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
       }*///resolve
     }).
     otherwise({
-      redirectTo: '/'
+      redirectTo: '/meetings'
     });
 }]);
