@@ -17,8 +17,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: 'RegistrationController'
     }).
     when('/checkins/:uId/:mId', {
-      templateUrl: 'views/register.html',
-      controller: 'RegistrationController'
+      templateUrl: 'views/checkins.html',
+      controller: 'CheckinsController'
     }).
     when('/login', {
       templateUrl: 'views/login.html',
