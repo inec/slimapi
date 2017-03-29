@@ -11,10 +11,15 @@ myApp.controller('MeetingsController',
         var meetingsInfo = $firebaseArray(meetingsRef);
 
         $scope.meetings = meetingsInfo;
-       
+        
         meetingsInfo.$loaded().then( function(data){
           $rootScope.howManyMeetings=meetingsInfo.length;
-        })
+        });
+
+        meetingsInfo.$watch(function(data){
+          $rootScope.howManyMeetings=meetingsInfo.length;
+
+         } );
 
         $scope.addMeeting = function() {
           meetingsInfo.$add({
