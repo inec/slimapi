@@ -3,7 +3,8 @@ require 'vendor\autoload.php';
 
 use GuzzleHttp\Client;
 
-$Clent = new Client();
+$client = new Client();
+
 
 $response =$client->request(
 'Get', 
