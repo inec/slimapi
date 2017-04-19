@@ -6,8 +6,8 @@ use GuzzleHttp\Client ;
 $client = new Client(['base_uri' =>'http://jsonplaceholder.typicode.com/']);
 
 
-$response =$client->request(
-'Get', 
+$response =$client->get(
+
 'posts/1'
 	);
 
