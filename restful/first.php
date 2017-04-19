@@ -3,12 +3,12 @@ require 'vendor\autoload.php';
 
 use GuzzleHttp\Client ;
 
-$client = new Client();
+$client = new Client(['base_uri' =>'http://jsonplaceholder.typicode.com/']);
 
 
 $response =$client->request(
 'Get', 
-'http://jsonplaceholder.typicode.com/posts/1'
+'posts/1'
 	);
 
 var_dump($response);
