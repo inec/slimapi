@@ -13,6 +13,6 @@ $response =$client->get('posts/2'	);
 var_dump($response);
 echo $response->getBody();
 
-$response =$client->get('comment/1'	);
+$response =$client->get('http://httpbin.org/ip'	);
 var_dump($response);
 echo $response->getBody();
