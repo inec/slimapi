@@ -5,10 +5,10 @@ use GuzzleHttp\Client ;
 
 $client = new Client(['base_uri' =>'http://jsonplaceholder.typicode.com/']);
 
-$response =$client->request(
+$response =$client->requestAsync(
     'GET',
 	'posts/1'
 	);
 var_dump($response);
-echo $response->getBody();
+echo $response->getBody();// fatal error 
 
