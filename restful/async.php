@@ -21,3 +21,5 @@ $promise -> then(
 			echo $e->getMessage();
 		}
 );
+
+$promise ->wait();
