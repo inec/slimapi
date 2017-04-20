@@ -17,13 +17,7 @@ $promise -> then(
 		{
 			echo $resp->getBody();
 		},
-			function (RequestException $re){
+		function (RequestException $re){
 			echo $e->getMessage();
-			}
-	)
-
-
-
-//var_dump($response);
-//echo $response->getBody();// fatal error 
-
+		}
+);
