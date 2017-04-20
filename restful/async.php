@@ -2,13 +2,28 @@
 require 'vendor\autoload.php';
 
 use GuzzleHttp\Client ;
+use GuzzleHttp\Psr7\Response ;
+use GuzzleHttp\Exception\RequestException ;
 
 $client = new Client(['base_uri' =>'http://jsonplaceholder.typicode.com/']);
 
-$response =$client->requestAsync(
+$promise =$client->requestAsync(
     'GET',
 	'posts/1'
-	);
-var_dump($response);
-echo $response->getBody();// fatal error 
+);
+
+$promise -> then(
+		function (Response $resp)
+		{
+			echo $resp->getBody();
+		},
+			function (RequestException $re){
+			echo $e->getMessage();
+			}
+	)
+
+
+
+//var_dump($response);
+//echo $response->getBody();// fatal error 
 
