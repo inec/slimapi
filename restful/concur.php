@@ -19,4 +19,8 @@ $promise2 =$client->requestAsync(
 
 $promises=[$promise,$promise2];
 
-$result = GuzzleHttp\Promise\settle($promises)->wait();
+$results = GuzzleHttp\Promise\settle($promises)->wait();
+
+foreach ($results as $result){
+ echo $result['value']->getBody();
+}
