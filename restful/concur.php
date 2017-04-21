@@ -12,14 +12,10 @@ $promise =$client->requestAsync(
 	'posts/1'
 );
 
-$promise -> then(
-		function (Response $resp)
-		{
-			echo $resp->getBody();
-		},
-		function (RequestException $re){
-			echo $e->getMessage();
-		}
+$promise2 =$client->requestAsync(
+    'GET',
+	'posts/2'
 );
 
-$promise ->wait();
+$promises=[$promise,$promise2];
+
