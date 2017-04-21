@@ -19,3 +19,4 @@ $promise2 =$client->requestAsync(
 
 $promises=[$promise,$promise2];
 
+$result = GuzzleHttp\Promise\settle($promises)->wait();
