@@ -5,13 +5,14 @@ use GuzzleHttp\Client ;
 $client = new Client(['base_uri' =>'http://jsonplaceholder.typicode.com/']);
 
 $response =$client->request(
-    'Get',
+    'POST',
 	'posts'	,
-[ 
-'query'=>[
-    'userId' => 1
+	[ 
+		'body' => 'foo',
+		'query'=>[
+    	'userId' => 1
+		]
 	]
-]
 );
 
 var_dump($response);
