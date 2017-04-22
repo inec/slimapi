@@ -8,9 +8,11 @@ $response =$client->request(
     'POST',
 	'posts'	,
 	[ 
-		'body' => 'foo',
-		'query'=>[
-    	'userId' => 1
+		'json' => [
+    	'title' => 'Guzzel Rest',
+    	'body' => 'Guzzzle make REST easy',
+    	'userId' =>2,
+
 		]
 	]
 );
