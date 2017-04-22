@@ -6,7 +6,9 @@ $client = new Client(['base_uri' =>'http://jsonplaceholder.typicode.com/']);
 
 $response =$client->get('posts'	,
 [ 
-'query'=>'userId=1'
+'query'=>[
+    'userId' => 1
+	]
 ]
 	);
 
