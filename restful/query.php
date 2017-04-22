@@ -9,9 +9,6 @@ $response =$client->get('posts/1'	);
 var_dump($response);
 echo $response->getBody();
 
-$response =$client->get('posts/2'	);
-var_dump($response);
-echo $response->getBody();
 
 $response =$client->get('http://httpbin.org/ip'	);
 var_dump($response);
