@@ -2,10 +2,11 @@
 require 'vendor\autoload.php';
 
 use GuzzleHttp\Client ;
-$client = ne
+$client = new Client(['base_uri' =>'http://jsonplaceholder.typicode.com/']);
+
 $response =$client->request(
     'POST',
-
+	'posts'	,
 	[ 
 		'json' => [
     	'title' => 'Guzzel Reffst',
@@ -18,5 +19,3 @@ $response =$client->request(
 
 var_dump($response);
 echo $response->getBody();
-
-
